@@ -9,13 +9,21 @@ const errorMiddleware = require("./middleware/error");
 
 // Config
 if (process.env.NODE_ENV !== "PRODUCTION") {
-  require("dotenv").config({ path: "backend/config/config.env" });
+    require("dotenv").config({ path: "backend/config/config.env" });
 }
+const cors = require('cors');
+// Add CORS middleware
+app.use(cors({
+    origin: 'http://localhost:3000', // Allowed origin (your frontend URL)
+    credentials: true // Allow cookies
+}));
+
 
 app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fileUpload());
+
 
 // Route Imports
 const product = require("./routes/productRoute");
@@ -31,7 +39,7 @@ app.use("/api/v1", payment);
 app.use(express.static(path.join(__dirname, "../frontend/build")));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
+    res.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
 });
 
 // Middleware for Errors
