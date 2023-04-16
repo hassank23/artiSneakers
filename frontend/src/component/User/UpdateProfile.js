@@ -18,7 +18,7 @@ const UpdateProfile = ({ history }) => {
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [avatar, setAvatar] = useState();
+  //const [avatar, setAvatar] = useState();
   const [avatarPreview, setAvatarPreview] = useState("/Profile.png");
 
   const updateProfileSubmit = (e) => {
@@ -28,7 +28,7 @@ const UpdateProfile = ({ history }) => {
 
     myForm.set("name", name);
     myForm.set("email", email);
-    myForm.set("avatar", avatar);
+    //myForm.set("avatar", avatar);
     dispatch(updateProfile(myForm));
   };
 
@@ -37,8 +37,8 @@ const UpdateProfile = ({ history }) => {
 
     reader.onload = () => {
       if (reader.readyState === 2) {
-        setAvatarPreview(reader.result);
-        setAvatar(reader.result);
+       // setAvatarPreview(reader.result);
+        //setAvatar(reader.result);
       }
     };
 

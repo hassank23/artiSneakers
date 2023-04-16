@@ -21,11 +21,12 @@ import {
 } from "@material-ui/core";
 import { Rating } from "@material-ui/lab";
 import { NEW_REVIEW_RESET } from "../../constants/productConstants";
+import { useMatch } from "react-router-dom";
 
-const ProductDetails = ({ match }) => {
+const ProductDetails = () => {
+  const match=useMatch('/product/:id')
   const dispatch = useDispatch();
   const alert = useAlert();
-
   const { product, loading, error } = useSelector(
     (state) => state.productDetails
   );
@@ -98,6 +99,7 @@ const ProductDetails = ({ match }) => {
     }
     dispatch(getProductDetails(match.params.id));
   }, [dispatch, match.params.id, error, alert, reviewError, success]);
+  console.log(match.params.id)
 
   return (
     <Fragment>
